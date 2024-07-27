@@ -11,23 +11,13 @@ namespace PlaywrightTests;
 public class ExampleTest : PageTest
 {
     [Test]
-    public async Task HasTitle()
+    public async Task typeUsername()
     {
-        await Page.GotoAsync("https://playwright.dev");
+
+        await Page.GotoAsync("https://demo.realworld.io/#/register");
 
         // Expect a title "to contain" a substring.
-        await Expect(Page).ToHaveTitleAsync(new Regex("Playwright"));
+        await Page.GetByPlaceholder("Username").FillAsync("testing");
     }
 
-    [Test]
-    public async Task GetStartedLink()
-    {
-        await Page.GotoAsync("https://playwright.dev");
-
-        // Click the get started link.
-        await Page.GetByRole(AriaRole.Link, new() { Name = "Get started" }).ClickAsync();
-
-        // Expects page to have a heading with the name of Installation.
-        await Expect(Page.GetByRole(AriaRole.Heading, new() { Name = "Installation" })).ToBeVisibleAsync();
-    }
 }
